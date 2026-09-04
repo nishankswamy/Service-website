@@ -167,6 +167,11 @@
     width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--navy));
     display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;
   }
+  .service-icon svg, .step-icon svg{width:22px;height:22px;color:#fff;}
+  .ic svg{width:17px;height:17px;}
+  .social-row a svg{width:16px;height:16px;}
+  .whatsapp-fab svg{width:28px;height:28px;}
+  .enquire svg{width:15px;height:15px;vertical-align:-3px;margin-right:4px;}
   .service-card h3{font-size:17px;color:var(--navy);margin-bottom:8px;font-weight:700;}
   .service-card p{color:var(--muted);font-size:14px;}
 
@@ -331,6 +336,19 @@
   .foot-brand{display:flex;align-items:center;gap:10px;font-weight:800;color:#fff;font-size:18px;margin-bottom:10px;}
   .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:13px;color:#8ba0bd;text-align:center;}
 
+  /* Scroll reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1;transform:none;}
+  .reveal-stagger .reveal:nth-child(1){transition-delay:0s;}
+  .reveal-stagger .reveal:nth-child(2){transition-delay:.08s;}
+  .reveal-stagger .reveal:nth-child(3){transition-delay:.16s;}
+  .reveal-stagger .reveal:nth-child(4){transition-delay:.24s;}
+  .reveal-stagger .reveal:nth-child(5){transition-delay:.32s;}
+  .reveal-stagger .reveal:nth-child(6){transition-delay:.4s;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
   @media (max-width:860px){
     .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
     .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid{grid-template-columns:repeat(2,1fr);}
@@ -401,39 +419,39 @@
 
 <section class="services" id="services">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">What we do</span>
       <h2>Complete laptop &amp; PC services</h2>
       <p>From buying your next laptop to fixing your old one — we handle hardware, software, and everything in between.</p>
     </div>
-    <div class="service-grid">
-      <div class="service-card">
-        <div class="service-icon">💻</div>
+    <div class="service-grid reveal-stagger">
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9"/><path d="M2 16h20l1.3 2.6a1 1 0 0 1-.9 1.4H1.6a1 1 0 0 1-.9-1.4L2 16Z"/></svg></div>
         <h3>New &amp; Used Laptop Sales</h3>
         <p>Brand-new and quality-checked refurbished laptops across budgets, with warranty and honest advice on what fits your needs.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg></div>
         <h3>Software Upgrades</h3>
         <p>OS upgrades and reinstalls, RAM/SSD upgrades, driver updates, and performance tuning to speed up slow laptops.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔧</div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
         <h3>Electronic Issue Repairs</h3>
         <p>Screen, keyboard, battery, charging port, motherboard and other hardware faults diagnosed and repaired.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🖥️</div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <h3>New &amp; Old Laptop Servicing</h3>
         <p>Full diagnostics, internal cleaning, thermal paste replacement, and tune-ups for laptops of any age or brand.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🛡️</div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
         <h3>Antivirus Installation</h3>
         <p>Genuine antivirus &amp; internet security software installed, licensed, and configured to keep your device protected.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">📦</div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg></div>
         <h3>Online Purchase Setup</h3>
         <p>Bought a laptop on Amazon, Flipkart, or elsewhere? We handle unboxing, setup, and initial installation for you.</p>
       </div>
@@ -443,7 +461,7 @@
 
 <section id="online-purchase">
   <div class="wrap">
-    <div class="banner">
+    <div class="banner reveal">
       <div class="banner-text">
         <h3>Bought a laptop online? We'll set it up for you.</h3>
         <p>Any laptop purchased from Amazon, Flipkart, or any other online store is eligible for our initial installation service — OS setup, essential software, drivers, and antivirus installation, all done at your doorstep or in-store.</p>
@@ -460,7 +478,7 @@
 
 <section id="inventory">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">In Stock Now</span>
       <h2>Laptops available today</h2>
       <p>Updated directly by us — availability and prices can change, please confirm before visiting.</p>
@@ -472,38 +490,38 @@
 
 <section id="pricing">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Pricing</span>
       <h2>Starting prices</h2>
       <p>Exact cost depends on the model and issue — this gives you a ballpark before you contact us.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="price-card">
+    <div class="pricing-grid reveal-stagger">
+      <div class="price-card reveal">
         <h3>Screen Replacement</h3>
         <div class="from">₹2,500 <span>onwards</span></div>
         <p>Varies by screen size and panel type (HD/FHD/touch).</p>
       </div>
-      <div class="price-card">
+      <div class="price-card reveal">
         <h3>RAM / SSD Upgrade</h3>
         <div class="from">₹1,800 <span>onwards</span></div>
         <p>Includes data migration for SSD upgrades.</p>
       </div>
-      <div class="price-card">
+      <div class="price-card reveal">
         <h3>Keyboard Replacement</h3>
         <div class="from">₹1,200 <span>onwards</span></div>
         <p>Depends on laptop brand and keyboard type.</p>
       </div>
-      <div class="price-card">
+      <div class="price-card reveal">
         <h3>OS Installation / Reinstall</h3>
         <div class="from">₹800 <span>onwards</span></div>
         <p>Windows/macOS setup with essential drivers.</p>
       </div>
-      <div class="price-card">
+      <div class="price-card reveal">
         <h3>Antivirus Installation</h3>
         <div class="from">₹500 <span>+ license cost</span></div>
         <p>Genuine licensed antivirus, installed and configured.</p>
       </div>
-      <div class="price-card">
+      <div class="price-card reveal">
         <h3>Online Purchase Setup</h3>
         <div class="from">₹499 <span>onwards</span></div>
         <p>Unboxing, setup, drivers, and antivirus for a new online order.</p>
@@ -515,28 +533,28 @@
 
 <section id="how-it-works">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Process</span>
       <h2>How it works</h2>
       <p>Simple, transparent, and fast — from first call to a working laptop.</p>
     </div>
-    <div class="steps">
-      <div class="step-card">
+    <div class="steps reveal-stagger">
+      <div class="step-card reveal">
         <div class="step-num">1</div>
         <h3>Book a Service</h3>
         <p>Call, WhatsApp, or fill the contact form with your issue or requirement.</p>
       </div>
-      <div class="step-card">
+      <div class="step-card reveal">
         <div class="step-num">2</div>
         <h3>Free Diagnosis</h3>
         <p>We inspect the device and give you an honest, upfront quote before any work starts.</p>
       </div>
-      <div class="step-card">
+      <div class="step-card reveal">
         <div class="step-num">3</div>
         <h3>Repair or Setup</h3>
         <p>Our technicians carry out the repair, upgrade, or installation using genuine parts and licensed software.</p>
       </div>
-      <div class="step-card">
+      <div class="step-card reveal">
         <div class="step-num">4</div>
         <h3>Delivery &amp; Support</h3>
         <p>Get your laptop back — tested and ready — with after-service support if anything comes up.</p>
@@ -547,13 +565,13 @@
 
 <section class="testimonials" id="reviews">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Customer Reviews</span>
       <h2>What customers say</h2>
       <p>Real feedback from people we've helped with sales, repairs, and setups.</p>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card">
+    <div class="testi-grid reveal-stagger">
+      <div class="testi-card reveal">
         <div class="stars">★★★★★</div>
         <p>"My laptop screen was cracked and they replaced it the same day. Fair pricing and genuine parts — highly recommend."</p>
         <div class="testi-author">
@@ -561,7 +579,7 @@
           <div><div class="name">Rakesh M.</div><div class="loc">Bannerghatta Road, Bangalore</div></div>
         </div>
       </div>
-      <div class="testi-card">
+      <div class="testi-card reveal">
         <div class="stars">★★★★★</div>
         <p>"Bought a laptop on Amazon and they came home to set everything up, including antivirus. Super convenient."</p>
         <div class="testi-author">
@@ -569,7 +587,7 @@
           <div><div class="name">Sneha K.</div><div class="loc">Arekere, Bangalore</div></div>
         </div>
       </div>
-      <div class="testi-card">
+      <div class="testi-card reveal">
         <div class="stars">★★★★★</div>
         <p>"My 6-year-old laptop feels brand new after their SSD upgrade and cleaning service. Great turnaround time."</p>
         <div class="testi-author">
@@ -584,23 +602,23 @@
 
 <section id="tips">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Tips &amp; Guides</span>
       <h2>Laptop care tips</h2>
       <p>Simple advice to keep your laptop running longer — written by our technicians.</p>
     </div>
-    <div class="tips-grid">
-      <div class="tip-card">
+    <div class="tips-grid reveal-stagger">
+      <div class="tip-card reveal">
         <span class="tip-tag">Maintenance</span>
         <h3>5 signs your laptop needs a service</h3>
         <p>Overheating, unusual noises, slow startup, frequent freezes, and battery draining fast are early warning signs — catching them early saves money.</p>
       </div>
-      <div class="tip-card">
+      <div class="tip-card reveal">
         <span class="tip-tag">Performance</span>
         <h3>How to speed up an old laptop</h3>
         <p>An SSD upgrade, extra RAM, removing startup bloatware, and a clean OS reinstall can make a 5+ year old laptop feel new again.</p>
       </div>
-      <div class="tip-card">
+      <div class="tip-card reveal">
         <span class="tip-tag">Security</span>
         <h3>Why genuine antivirus matters</h3>
         <p>Free or pirated antivirus tools often miss modern threats. A licensed antivirus with real-time protection is worth the small yearly cost.</p>
@@ -611,28 +629,28 @@
 
 <section id="faq">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">FAQ</span>
       <h2>Frequently asked questions</h2>
     </div>
-    <div class="faq" id="faqList">
-      <div class="faq-item">
+    <div class="faq reveal-stagger" id="faqList">
+      <div class="faq-item reveal">
         <button class="faq-q">Do you offer doorstep service? <span class="plus">+</span></button>
         <div class="faq-a"><p>Yes — doorstep pickup, drop, and on-site installation are available on request across our service area in Bangalore.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-q">How long does a typical repair take? <span class="plus">+</span></button>
         <div class="faq-a"><p>Most software issues and minor repairs are completed same-day. Hardware repairs needing parts may take 1–3 days depending on availability.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-q">Do you install antivirus on laptops bought elsewhere? <span class="plus">+</span></button>
         <div class="faq-a"><p>Yes, we install and license genuine antivirus software on any laptop, regardless of where it was purchased.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-q">What's included in the online purchase setup service? <span class="plus">+</span></button>
         <div class="faq-a"><p>Unboxing, OS setup and updates, driver installation, essential software, antivirus installation, and a basic walkthrough of your new laptop.</p></div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-q">Do you offer a warranty on repairs? <span class="plus">+</span></button>
         <div class="faq-a"><p>Yes, repairs come with a service warranty — ask our team for the exact terms based on the type of repair.</p></div>
       </div>
@@ -641,7 +659,7 @@
 </section>
 
 <section id="about">
-  <div class="wrap about-grid">
+  <div class="wrap about-grid reveal">
     <div class="about-photo">🖥️🔧</div>
     <div>
       <span class="eyebrow">About Us</span>
@@ -659,7 +677,7 @@
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Contact &amp; Support</span>
       <h2>Get in touch</h2>
       <p>Reach us directly, or send a request below and we'll get back to you.</p>
@@ -668,15 +686,15 @@
       <div>
         <div class="info-card">
           <div class="info-row">
-            <div class="ic">📞</div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
             <div><h4>Phone</h4><a href="tel:+919845926131">+91 98459 26131</a></div>
           </div>
           <div class="info-row">
-            <div class="ic">✉️</div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
             <div><h4>Email</h4><a href="mailto:lakshmipriya12.g1@gmail.com">lakshmipriya12.g1@gmail.com</a></div>
           </div>
           <div class="info-row">
-            <div class="ic">📍</div>
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div><h4>Address</h4><p>Mitra Siddi Building, 2nd Cross, Doctors Layout, Arekere, Bannerghatta Road, Bangalore – 560076, Karnataka</p></div>
           </div>
           <div class="hours">
@@ -762,9 +780,9 @@
         <a href="mailto:lakshmipriya12.g1@gmail.com">lakshmipriya12.g1@gmail.com</a>
         <p>Bannerghatta Road, Bangalore – 560076</p>
         <div class="social-row">
-          <a href="#" title="Instagram (add your link)">IG</a>
-          <a href="#" title="Facebook (add your link)">FB</a>
-          <a href="https://wa.me/919845926131" title="WhatsApp">WA</a>
+          <a href="#" title="Instagram (add your link)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" title="Facebook (add your link)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://wa.me/919845926131" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
         </div>
       </div>
     </div>
@@ -772,7 +790,7 @@
   </div>
 </footer>
 
-<a href="https://wa.me/919845926131?text=Hi%2C%20I%27d%20like%20help%20with%20my%20laptop" class="whatsapp-fab" title="Chat on WhatsApp" target="_blank" rel="noopener">💬</a>
+<a href="https://wa.me/919845926131?text=Hi%2C%20I%27d%20like%20help%20with%20my%20laptop" class="whatsapp-fab" title="Chat on WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
 
 <script>
   document.getElementById('supportForm').addEventListener('submit', function(e){
@@ -780,6 +798,28 @@
     document.getElementById('successMsg').style.display = 'block';
     this.reset();
   });
+
+  // ---- Scroll reveal animations (no external library) ----
+  var revealObserver = ('IntersectionObserver' in window)
+    ? new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' })
+    : null;
+
+  function observeReveals(root){
+    var els = (root || document).querySelectorAll('.reveal:not(.visible)');
+    if(revealObserver){
+      els.forEach(function(el){ revealObserver.observe(el); });
+    } else {
+      els.forEach(function(el){ el.classList.add('visible'); });
+    }
+  }
+  observeReveals();
 
   document.querySelectorAll('.faq-q').forEach(function(btn){
     btn.addEventListener('click', function(){
@@ -830,21 +870,23 @@
       grid.innerHTML = '<div class="inventory-empty">No laptops listed right now — check back soon or contact us directly.</div>';
       return;
     }
+    const laptopIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:44px;height:44px;color:#8aa9d6;"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9"/><path d="M2 16h20l1.3 2.6a1 1 0 0 1-.9 1.4H1.6a1 1 0 0 1-.9-1.4L2 16Z"/></svg>';
+    const waIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>';
     grid.innerHTML = items.map(function(item){
       const media = item.image
         ? '<img src="' + item.image + '" alt="' + item.model + '">'
-        : '💻';
+        : laptopIcon;
       const badge = item.inStock
         ? '<span class="stock-badge in">In Stock</span>'
         : '<span class="stock-badge out">Out of Stock</span>';
       const waMsg = encodeURIComponent('Hi, I\'m interested in the ' + item.model + ' listed on your website.');
-      return '<div class="laptop-card">' +
+      return '<div class="laptop-card reveal">' +
         '<div class="laptop-media">' + media + '</div>' +
         '<div class="laptop-body">' +
           '<h3>' + item.model + '</h3>' +
           '<div class="specs">' + item.specs + '</div>' +
           '<div class="laptop-foot"><span class="laptop-price">' + item.price + '</span>' + badge + '</div>' +
-          '<a class="enquire" href="https://wa.me/919845926131?text=' + waMsg + '" target="_blank" rel="noopener">Enquire on WhatsApp</a>' +
+          '<a class="enquire" href="https://wa.me/919845926131?text=' + waMsg + '" target="_blank" rel="noopener">' + waIcon + ' Enquire on WhatsApp</a>' +
         '</div>' +
       '</div>';
     }).join('');
@@ -853,6 +895,7 @@
     } else {
       note.textContent = 'Availability and prices can change — please confirm before visiting.';
     }
+    observeReveals(grid);
   }
 
   if(INVENTORY_CSV_URL){
