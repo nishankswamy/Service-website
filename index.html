@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TechFix Pro — Laptop Sales & Service</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    color-scheme: light;
+    --navy:#0f2540;
+    --blue:#1d6fe0;
+    --blue-dark:#1552ab;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --text:#1c2733;
+    --muted:#5b6b7c;
+    --border:#e3e8ef;
+    --accent:#ffb020;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;color:var(--navy);}
+  .brand .logo{
+    width:34px;height:34px;border-radius:9px;
+    background:linear-gradient(135deg,var(--blue),var(--navy));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:800;
+  }
+  nav.links{display:flex;gap:26px;font-size:15px;font-weight:600;color:var(--navy);}
+  nav.links a{opacity:.85;transition:opacity .15s;}
+  nav.links a:hover{opacity:1;color:var(--blue);}
+  .nav-cta{
+    background:var(--blue);color:#fff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:14px;
+    box-shadow:0 2px 8px rgba(29,111,224,.25);
+  }
+  .nav-cta:hover{background:var(--blue-dark);}
+  .burger{display:none;font-size:22px;background:none;border:none;color:var(--navy);cursor:pointer;}
+
+  /* Hero */
+  .hero{
+    background:radial-gradient(1100px 500px at 80% -10%, #dbe9ff 0%, transparent 60%),
+               linear-gradient(180deg,#ffffff, #eef3fb);
+    padding:64px 0 56px;
+    border-bottom:1px solid var(--border);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+  .eyebrow{
+    display:inline-block;background:#e7f0ff;color:var(--blue-dark);font-weight:700;font-size:13px;
+    padding:6px 12px;border-radius:20px;margin-bottom:18px;
+  }
+  .hero h1{font-size:42px;line-height:1.15;color:var(--navy);font-weight:800;margin-bottom:16px;}
+  .hero h1 span{color:var(--blue);}
+  .hero p{font-size:17px;color:var(--muted);max-width:520px;margin-bottom:28px;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    padding:13px 24px;border-radius:9px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;
+    cursor:pointer;border:none;transition:transform .12s, background .15s;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(29,111,224,.3);}
+  .btn-primary:hover{background:var(--blue-dark);}
+  .btn-outline{background:#fff;color:var(--navy);border:1.5px solid var(--border);}
+  .btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+  .hero-card{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;
+    box-shadow:0 20px 40px -20px rgba(15,37,64,.25);
+  }
+  .hero-card h3{color:var(--navy);font-size:16px;margin-bottom:14px;}
+  .stat-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--border);}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-row .num{font-weight:800;color:var(--blue);font-size:20px;}
+  .stat-row .label{color:var(--muted);font-size:13px;}
+
+  section{padding:64px 0;}
+  .section-head{max-width:640px;margin:0 auto 40px;text-align:center;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:30px;color:var(--navy);font-weight:800;margin-bottom:10px;}
+  .section-head p{color:var(--muted);font-size:15.5px;}
+
+  /* Services */
+  .services{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .service-card{
+    background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:26px;transition:box-shadow .15s, transform .15s;
+  }
+  .service-card:hover{box-shadow:0 12px 30px -16px rgba(15,37,64,.25);transform:translateY(-3px);}
+  .service-icon{
+    width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--navy));
+    display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;
+  }
+  .service-card h3{font-size:17px;color:var(--navy);margin-bottom:8px;font-weight:700;}
+  .service-card p{color:var(--muted);font-size:14px;}
+
+  /* Online purchase banner */
+  .banner{
+    background:linear-gradient(120deg,var(--navy),#163b66);
+    color:#fff;border-radius:18px;padding:36px 40px;display:flex;align-items:center;gap:30px;justify-content:space-between;flex-wrap:wrap;
+  }
+  .banner-text h3{font-size:22px;margin-bottom:8px;}
+  .banner-text p{color:#c9d8ec;font-size:15px;max-width:520px;}
+  .banner .btn-primary{background:var(--accent);color:#3a2600;}
+  .banner .btn-primary:hover{background:#ffc34d;}
+  .brand-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .brand-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:5px 12px;border-radius:20px;font-size:12.5px;font-weight:600;}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;}
+  .about-list{list-style:none;margin-top:18px;}
+  .about-list li{display:flex;gap:10px;margin-bottom:12px;color:var(--text);font-size:15px;}
+  .about-list li::before{content:"✓";color:var(--blue);font-weight:800;}
+  .about-photo{
+    background:linear-gradient(135deg,#dbe9ff,#f6f8fb);border:1px solid var(--border);border-radius:16px;
+    height:280px;display:flex;align-items:center;justify-content:center;font-size:70px;
+  }
+
+  /* Contact / Support */
+  .contact{background:#fff;border-top:1px solid var(--border);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  .info-card{
+    background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px;
+  }
+  .info-row{display:flex;gap:14px;margin-bottom:20px;}
+  .info-row .ic{
+    width:38px;height:38px;flex:0 0 38px;border-radius:9px;background:#e7f0ff;color:var(--blue-dark);
+    display:flex;align-items:center;justify-content:center;font-size:17px;
+  }
+  .info-row h4{font-size:14px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;}
+  .info-row p, .info-row a{font-size:15px;color:var(--navy);font-weight:600;}
+  .hours{margin-top:6px;padding-top:16px;border-top:1px dashed var(--border);}
+  .hours-row{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);padding:4px 0;}
+  .hours-row span:last-child{color:var(--text);font-weight:600;}
+
+  form{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+  .field input, .field select, .field textarea{
+    width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:14.5px;font-family:inherit;color:var(--text);background:#fff;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none;border-color:var(--blue);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .submit-btn{width:100%;justify-content:center;margin-top:4px;}
+  .form-note{font-size:12.5px;color:var(--muted);margin-top:12px;text-align:center;}
+  .success-msg{
+    display:none;background:#e9f9ee;border:1px solid #b7e6c5;color:#1c6b34;padding:14px 16px;border-radius:9px;font-size:14px;font-weight:600;margin-bottom:16px;
+  }
+
+  footer{background:var(--navy);color:#c9d8ec;padding:40px 0 24px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:28px;}
+  .foot-grid h4{color:#fff;font-size:15px;margin-bottom:14px;}
+  .foot-grid p, .foot-grid a{font-size:14px;color:#aebfd6;display:block;margin-bottom:8px;}
+  .foot-grid a:hover{color:#fff;}
+  .foot-brand{display:flex;align-items:center;gap:10px;font-weight:800;color:#fff;font-size:18px;margin-bottom:10px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:13px;color:#8ba0bd;text-align:center;}
+
+  @media (max-width:860px){
+    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:1fr;}
+    nav.links{display:none;}
+    .burger{display:block;}
+    .hero h1{font-size:32px;}
+  }
+  @media (max-width:560px){
+    .service-grid{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr;}
+    .banner{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="logo">TF</span> TechFix Pro</div>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#online-purchase">Online Purchase Setup</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact / Support</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Get Support</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Laptop Sales &amp; Repair Specialists</span>
+      <h1>Laptops, repairs &amp; software — <span>sorted, fast.</span></h1>
+      <p>New &amp; used laptop sales, software upgrades, electronic repairs, antivirus setup, and free initial installation for anything you bought online. One call, all sorted.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">📞 Book a Service</a>
+        <a href="#services" class="btn btn-outline">View Services</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Why customers choose us</h3>
+      <div class="stat-row"><span class="label">Years of hands-on service</span><span class="num">10+</span></div>
+      <div class="stat-row"><span class="label">Devices serviced</span><span class="num">5,000+</span></div>
+      <div class="stat-row"><span class="label">Same-day diagnostics</span><span class="num">Yes</span></div>
+      <div class="stat-row"><span class="label">Genuine antivirus licenses</span><span class="num">✔</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Complete laptop &amp; PC services</h2>
+      <p>From buying your next laptop to fixing your old one — we handle hardware, software, and everything in between.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>New &amp; Used Laptop Sales</h3>
+        <p>Brand-new and quality-checked refurbished laptops across budgets, with warranty and honest advice on what fits your needs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Software Upgrades</h3>
+        <p>OS upgrades and reinstalls, RAM/SSD upgrades, driver updates, and performance tuning to speed up slow laptops.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Electronic Issue Repairs</h3>
+        <p>Screen, keyboard, battery, charging port, motherboard and other hardware faults diagnosed and repaired.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🖥️</div>
+        <h3>New &amp; Old Laptop Servicing</h3>
+        <p>Full diagnostics, internal cleaning, thermal paste replacement, and tune-ups for laptops of any age or brand.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Antivirus Installation</h3>
+        <p>Genuine antivirus &amp; internet security software installed, licensed, and configured to keep your device protected.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <h3>Online Purchase Setup</h3>
+        <p>Bought a laptop on Amazon, Flipkart, or elsewhere? We handle unboxing, setup, and initial installation for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="online-purchase">
+  <div class="wrap">
+    <div class="banner">
+      <div class="banner-text">
+        <h3>Bought a laptop online? We'll set it up for you.</h3>
+        <p>Any laptop purchased from Amazon, Flipkart, or any other online store is eligible for our initial installation service — OS setup, essential software, drivers, and antivirus installation, all done at your doorstep or in-store.</p>
+        <div class="brand-strip">
+          <span class="brand-pill">Amazon orders</span>
+          <span class="brand-pill">Flipkart orders</span>
+          <span class="brand-pill">Any online retailer</span>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn-primary">Schedule Setup</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo">🖥️🔧</div>
+    <div>
+      <span class="eyebrow">About Us</span>
+      <h2 style="font-size:28px;color:var(--navy);font-weight:800;margin-bottom:10px;">Local, reliable laptop &amp; PC care</h2>
+      <p style="color:var(--muted);font-size:15.5px;">We're a Bangalore-based service provider helping individuals and businesses buy, upgrade, repair, and protect their laptops — no jargon, honest pricing, and clear timelines.</p>
+      <ul class="about-list">
+        <li>Certified technicians for hardware &amp; software issues</li>
+        <li>Genuine parts and licensed software only</li>
+        <li>Transparent, upfront pricing before any work begins</li>
+        <li>Doorstep pickup/drop available on request</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Contact &amp; Support</span>
+      <h2>Get in touch</h2>
+      <p>Reach us directly, or send a request below and we'll get back to you.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="info-card">
+          <div class="info-row">
+            <div class="ic">📞</div>
+            <div><h4>Phone</h4><a href="tel:+919845926131">+91 98459 26131</a></div>
+          </div>
+          <div class="info-row">
+            <div class="ic">✉️</div>
+            <div><h4>Email</h4><a href="mailto:lakshmipriya12.g1@gmail.com">lakshmipriya12.g1@gmail.com</a></div>
+          </div>
+          <div class="info-row">
+            <div class="ic">📍</div>
+            <div><h4>Address</h4><p>Mitra Siddi Building, 2nd Cross, Doctors Layout, Arekere, Bannerghatta Road, Bangalore – 560076, Karnataka</p></div>
+          </div>
+          <div class="hours">
+            <div class="hours-row"><span>Mon – Sat</span><span>10:00 AM – 8:00 PM</span></div>
+            <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <form id="supportForm">
+          <div class="success-msg" id="successMsg">Thanks! Your request has been noted — we'll contact you shortly.</div>
+          <div class="two-col">
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" required placeholder="Your name">
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" required placeholder="Your phone number">
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="service">Service Needed</label>
+            <select id="service">
+              <option>Laptop Sales</option>
+              <option>Software Upgrade</option>
+              <option>Electronic Issue Repair</option>
+              <option>Laptop Servicing (New/Old)</option>
+              <option>Antivirus Installation</option>
+              <option>Online Purchase — Initial Installation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Describe the issue / request</label>
+            <textarea id="message" placeholder="Tell us briefly what's going on..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary submit-btn">Submit Request</button>
+          <p class="form-note">This form doesn't send automatically yet — connect it to email/WhatsApp before going live. Meanwhile, call or email us directly above.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><span class="logo" style="width:30px;height:30px;font-size:14px;">TF</span> TechFix Pro</div>
+        <p>Laptop sales, software upgrades, repairs, and antivirus installation — plus free initial setup for anything bought online.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#services">Services</a>
+        <a href="#online-purchase">Online Purchase Setup</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact / Support</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+919845926131">+91 98459 26131</a>
+        <a href="mailto:lakshmipriya12.g1@gmail.com">lakshmipriya12.g1@gmail.com</a>
+        <p>Bannerghatta Road, Bangalore – 560076</p>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 TechFix Pro. All rights reserved. (Placeholder name — replace with your business name.)</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('supportForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('successMsg').style.display = 'block';
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
