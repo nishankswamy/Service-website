@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TechFix Pro — Laptop Sales & Service</title>
+<title>TechFix Pro — Laptop Sales, Repairs & Software Upgrades in Bangalore</title>
+<meta name="description" content="TechFix Pro offers new & used laptop sales, software upgrades, electronic repairs, antivirus installation, and free initial setup for laptops bought online. Serving Bannerghatta Road, Bangalore.">
+<meta name="keywords" content="laptop repair Bangalore, laptop sales, software upgrade, antivirus installation, laptop service Bannerghatta Road, online laptop setup">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f2540">
+<meta property="og:title" content="TechFix Pro — Laptop Sales & Service">
+<meta property="og:description" content="Laptop sales, software upgrades, repairs, antivirus installation, and free setup for laptops bought online.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2540'/%3E%3Ctext x='50%25' y='58%25' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETF%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     color-scheme: light;
@@ -161,6 +168,70 @@
     display:none;background:#e9f9ee;border:1px solid #b7e6c5;color:#1c6b34;padding:14px 16px;border-radius:9px;font-size:14px;font-weight:600;margin-bottom:16px;
   }
 
+  /* Brand strip (devices serviced) */
+  .device-strip{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:26px 0;}
+  .device-strip .wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;justify-content:center;}
+  .device-strip .label{color:var(--muted);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+  .device-pill{background:var(--bg);border:1px solid var(--border);color:var(--navy);font-weight:700;font-size:13.5px;padding:7px 16px;border-radius:20px;}
+
+  /* How it works */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step;}
+  .step-card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;}
+  .step-num{
+    width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:15px;
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  }
+  .step-card h3{font-size:16px;color:var(--navy);margin-bottom:6px;font-weight:700;}
+  .step-card p{color:var(--muted);font-size:13.5px;}
+
+  /* Testimonials */
+  .testimonials{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .testi-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px;}
+  .stars{color:var(--accent);font-size:15px;margin-bottom:10px;letter-spacing:2px;}
+  .testi-card p{font-size:14.5px;color:var(--text);margin-bottom:16px;}
+  .testi-author{display:flex;align-items:center;gap:10px;}
+  .testi-avatar{
+    width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--navy));
+    color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
+  }
+  .testi-author .name{font-weight:700;color:var(--navy);font-size:13.5px;}
+  .testi-author .loc{color:var(--muted);font-size:12px;}
+  .testi-note{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--card);}
+  .faq-q{
+    width:100%;text-align:left;padding:18px 20px;background:none;border:none;cursor:pointer;font-size:15px;font-weight:700;
+    color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:inherit;
+  }
+  .faq-q .plus{transition:transform .2s;color:var(--blue);font-size:18px;flex:0 0 auto;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0 20px;}
+  .faq-item.open .faq-a{max-height:200px;padding-bottom:18px;}
+  .faq-a p{color:var(--muted);font-size:14px;}
+
+  /* Map */
+  .map-wrap{border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-top:20px;}
+  .map-wrap iframe{width:100%;height:220px;border:0;display:block;}
+
+  /* WhatsApp floating button */
+  .whatsapp-fab{
+    position:fixed;bottom:22px;right:22px;z-index:60;
+    background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:28px;
+    box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .15s;
+  }
+  .whatsapp-fab:hover{transform:scale(1.08);}
+
+  .social-row{display:flex;gap:12px;margin-top:6px;}
+  .social-row a{
+    width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;font-size:15px;
+  }
+  .social-row a:hover{background:rgba(255,255,255,.2);}
+
   footer{background:var(--navy);color:#c9d8ec;padding:40px 0 24px;}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:28px;}
   .foot-grid h4{color:#fff;font-size:15px;margin-bottom:14px;}
@@ -171,14 +242,14 @@
 
   @media (max-width:860px){
     .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
-    .service-grid{grid-template-columns:repeat(2,1fr);}
+    .service-grid, .steps, .testi-grid{grid-template-columns:repeat(2,1fr);}
     .foot-grid{grid-template-columns:1fr;}
     nav.links{display:none;}
     .burger{display:block;}
     .hero h1{font-size:32px;}
   }
   @media (max-width:560px){
-    .service-grid{grid-template-columns:1fr;}
+    .service-grid, .steps, .testi-grid{grid-template-columns:1fr;}
     .two-col{grid-template-columns:1fr;}
     .banner{flex-direction:column;align-items:flex-start;}
   }
@@ -191,7 +262,9 @@
     <div class="brand"><span class="logo">TF</span> TechFix Pro</div>
     <nav class="links">
       <a href="#services">Services</a>
-      <a href="#online-purchase">Online Purchase Setup</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
       <a href="#about">About</a>
       <a href="#contact">Contact / Support</a>
     </nav>
@@ -219,6 +292,19 @@
     </div>
   </div>
 </section>
+
+<div class="device-strip">
+  <div class="wrap">
+    <span class="label">We service all major brands</span>
+    <span class="device-pill">Dell</span>
+    <span class="device-pill">HP</span>
+    <span class="device-pill">Lenovo</span>
+    <span class="device-pill">ASUS</span>
+    <span class="device-pill">Acer</span>
+    <span class="device-pill">Apple MacBook</span>
+    <span class="device-pill">MSI</span>
+  </div>
+</div>
 
 <section class="services" id="services">
   <div class="wrap">
@@ -279,6 +365,106 @@
   </div>
 </section>
 
+<section id="how-it-works">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Process</span>
+      <h2>How it works</h2>
+      <p>Simple, transparent, and fast — from first call to a working laptop.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Book a Service</h3>
+        <p>Call, WhatsApp, or fill the contact form with your issue or requirement.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Free Diagnosis</h3>
+        <p>We inspect the device and give you an honest, upfront quote before any work starts.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Repair or Setup</h3>
+        <p>Our technicians carry out the repair, upgrade, or installation using genuine parts and licensed software.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Delivery &amp; Support</h3>
+        <p>Get your laptop back — tested and ready — with after-service support if anything comes up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Customer Reviews</span>
+      <h2>What customers say</h2>
+      <p>Real feedback from people we've helped with sales, repairs, and setups.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"My laptop screen was cracked and they replaced it the same day. Fair pricing and genuine parts — highly recommend."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div><div class="name">Rakesh M.</div><div class="loc">Bannerghatta Road, Bangalore</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Bought a laptop on Amazon and they came home to set everything up, including antivirus. Super convenient."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div><div class="name">Sneha K.</div><div class="loc">Arekere, Bangalore</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"My 6-year-old laptop feels brand new after their SSD upgrade and cleaning service. Great turnaround time."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div><div class="name">Arjun V.</div><div class="loc">JP Nagar, Bangalore</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="testi-note">Sample reviews shown for demo purposes — replace with your real customer reviews (or embed your Google Business reviews) before publishing.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">Do you offer doorstep service? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes — doorstep pickup, drop, and on-site installation are available on request across our service area in Bangalore.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does a typical repair take? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Most software issues and minor repairs are completed same-day. Hardware repairs needing parts may take 1–3 days depending on availability.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you install antivirus on laptops bought elsewhere? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, we install and license genuine antivirus software on any laptop, regardless of where it was purchased.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's included in the online purchase setup service? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Unboxing, OS setup and updates, driver installation, essential software, antivirus installation, and a basic walkthrough of your new laptop.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you offer a warranty on repairs? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, repairs come with a service warranty — ask our team for the exact terms based on the type of repair.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="about">
   <div class="wrap about-grid">
     <div class="about-photo">🖥️🔧</div>
@@ -322,6 +508,9 @@
             <div class="hours-row"><span>Mon – Sat</span><span>10:00 AM – 8:00 PM</span></div>
             <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
           </div>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps?q=Mitra+Siddi+building+2nd+cross+Doctors+Layout+Arekere+Bannerghatta+road+Bangalore+560076&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Business location map"></iframe>
         </div>
       </div>
       <div>
@@ -384,17 +573,33 @@
         <a href="tel:+919845926131">+91 98459 26131</a>
         <a href="mailto:lakshmipriya12.g1@gmail.com">lakshmipriya12.g1@gmail.com</a>
         <p>Bannerghatta Road, Bangalore – 560076</p>
+        <div class="social-row">
+          <a href="#" title="Instagram (add your link)">IG</a>
+          <a href="#" title="Facebook (add your link)">FB</a>
+          <a href="https://wa.me/919845926131" title="WhatsApp">WA</a>
+        </div>
       </div>
     </div>
     <div class="foot-bottom">© 2026 TechFix Pro. All rights reserved. (Placeholder name — replace with your business name.)</div>
   </div>
 </footer>
 
+<a href="https://wa.me/919845926131?text=Hi%2C%20I%27d%20like%20help%20with%20my%20laptop" class="whatsapp-fab" title="Chat on WhatsApp" target="_blank" rel="noopener">💬</a>
+
 <script>
   document.getElementById('supportForm').addEventListener('submit', function(e){
     e.preventDefault();
     document.getElementById('successMsg').style.display = 'block';
     this.reset();
+  });
+
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+      if(!wasOpen){ item.classList.add('open'); }
+    });
   });
 </script>
 
