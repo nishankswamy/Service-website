@@ -11,6 +11,29 @@
 <meta property="og:description" content="Laptop sales, software upgrades, repairs, antivirus installation, and free setup for laptops bought online.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2540'/%3E%3Ctext x='50%25' y='58%25' font-size='30' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ETF%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ElectronicsStore",
+  "name": "TechFix Pro",
+  "image": "",
+  "telephone": "+91-98459-26131",
+  "email": "lakshmipriya12.g1@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Mitra Siddi Building, 2nd Cross, Doctors Layout, Arekere, Bannerghatta Road",
+    "addressLocality": "Bangalore",
+    "addressRegion": "Karnataka",
+    "postalCode": "560076",
+    "addressCountry": "IN"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "10:00", "closes": "20:00" }
+  ],
+  "priceRange": "₹₹",
+  "url": ""
+}
+</script>
 <style>
   :root{
     color-scheme: light;
@@ -212,6 +235,41 @@
   .faq-item.open .faq-a{max-height:200px;padding-bottom:18px;}
   .faq-a p{color:var(--muted);font-size:14px;}
 
+  /* Inventory */
+  .inventory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .laptop-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:box-shadow .15s, transform .15s;}
+  .laptop-card:hover{box-shadow:0 12px 30px -16px rgba(15,37,64,.25);transform:translateY(-3px);}
+  .laptop-media{height:150px;background:linear-gradient(135deg,#dbe9ff,#f6f8fb);display:flex;align-items:center;justify-content:center;font-size:52px;}
+  .laptop-media img{width:100%;height:100%;object-fit:cover;}
+  .laptop-body{padding:20px;}
+  .laptop-body h3{font-size:16px;color:var(--navy);margin-bottom:6px;font-weight:700;}
+  .laptop-body .specs{color:var(--muted);font-size:13px;margin-bottom:12px;min-height:34px;}
+  .laptop-foot{display:flex;align-items:center;justify-content:space-between;}
+  .laptop-price{font-weight:800;color:var(--blue);font-size:16px;}
+  .stock-badge{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:12px;}
+  .stock-badge.in{background:#e9f9ee;color:#1c6b34;}
+  .stock-badge.out{background:#fdecec;color:#b3261e;}
+  .laptop-body .enquire{display:block;margin-top:14px;text-align:center;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px;font-size:13.5px;font-weight:700;color:var(--navy);}
+  .laptop-body .enquire:hover{border-color:var(--blue);color:var(--blue);}
+  .inventory-note{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;}
+  .inventory-empty{text-align:center;color:var(--muted);font-size:14px;padding:30px;border:1px dashed var(--border);border-radius:14px;}
+
+  /* Pricing */
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .price-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;}
+  .price-card h3{font-size:15.5px;color:var(--navy);font-weight:700;margin-bottom:8px;}
+  .price-card .from{font-size:22px;font-weight:800;color:var(--blue);margin-bottom:6px;}
+  .price-card .from span{font-size:12.5px;color:var(--muted);font-weight:600;}
+  .price-card p{color:var(--muted);font-size:13px;}
+  .pricing-note{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;}
+
+  /* Tips / Blog */
+  .tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .tip-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px;}
+  .tip-tag{display:inline-block;background:#e7f0ff;color:var(--blue-dark);font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:10px;margin-bottom:12px;}
+  .tip-card h3{font-size:16px;color:var(--navy);margin-bottom:8px;font-weight:700;}
+  .tip-card p{color:var(--muted);font-size:13.5px;}
+
   /* Map */
   .map-wrap{border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-top:20px;}
   .map-wrap iframe{width:100%;height:220px;border:0;display:block;}
@@ -242,14 +300,14 @@
 
   @media (max-width:860px){
     .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
-    .service-grid, .steps, .testi-grid{grid-template-columns:repeat(2,1fr);}
+    .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid{grid-template-columns:repeat(2,1fr);}
     .foot-grid{grid-template-columns:1fr;}
     nav.links{display:none;}
     .burger{display:block;}
     .hero h1{font-size:32px;}
   }
   @media (max-width:560px){
-    .service-grid, .steps, .testi-grid{grid-template-columns:1fr;}
+    .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid{grid-template-columns:1fr;}
     .two-col{grid-template-columns:1fr;}
     .banner{flex-direction:column;align-items:flex-start;}
   }
@@ -262,7 +320,9 @@
     <div class="brand"><span class="logo">TF</span> TechFix Pro</div>
     <nav class="links">
       <a href="#services">Services</a>
-      <a href="#how-it-works">How It Works</a>
+      <a href="#inventory">Laptops in Stock</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#tips">Tips</a>
       <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
       <a href="#about">About</a>
@@ -365,6 +425,61 @@
   </div>
 </section>
 
+<section id="inventory">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">In Stock Now</span>
+      <h2>Laptops available today</h2>
+      <p>Updated directly by us — availability and prices can change, please confirm before visiting.</p>
+    </div>
+    <div id="inventoryGrid" class="inventory-grid"></div>
+    <p class="inventory-note" id="inventoryNote">Sample listings shown below — connect your Google Sheet to make this update automatically (see README).</p>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>Starting prices</h2>
+      <p>Exact cost depends on the model and issue — this gives you a ballpark before you contact us.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Screen Replacement</h3>
+        <div class="from">₹2,500 <span>onwards</span></div>
+        <p>Varies by screen size and panel type (HD/FHD/touch).</p>
+      </div>
+      <div class="price-card">
+        <h3>RAM / SSD Upgrade</h3>
+        <div class="from">₹1,800 <span>onwards</span></div>
+        <p>Includes data migration for SSD upgrades.</p>
+      </div>
+      <div class="price-card">
+        <h3>Keyboard Replacement</h3>
+        <div class="from">₹1,200 <span>onwards</span></div>
+        <p>Depends on laptop brand and keyboard type.</p>
+      </div>
+      <div class="price-card">
+        <h3>OS Installation / Reinstall</h3>
+        <div class="from">₹800 <span>onwards</span></div>
+        <p>Windows/macOS setup with essential drivers.</p>
+      </div>
+      <div class="price-card">
+        <h3>Antivirus Installation</h3>
+        <div class="from">₹500 <span>+ license cost</span></div>
+        <p>Genuine licensed antivirus, installed and configured.</p>
+      </div>
+      <div class="price-card">
+        <h3>Online Purchase Setup</h3>
+        <div class="from">₹499 <span>onwards</span></div>
+        <p>Unboxing, setup, drivers, and antivirus for a new online order.</p>
+      </div>
+    </div>
+    <p class="pricing-note">Prices shown are placeholders — update them with your actual rates before publishing.</p>
+  </div>
+</section>
+
 <section id="how-it-works">
   <div class="wrap">
     <div class="section-head">
@@ -431,6 +546,33 @@
       </div>
     </div>
     <p class="testi-note">Sample reviews shown for demo purposes — replace with your real customer reviews (or embed your Google Business reviews) before publishing.</p>
+  </div>
+</section>
+
+<section id="tips">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Tips &amp; Guides</span>
+      <h2>Laptop care tips</h2>
+      <p>Simple advice to keep your laptop running longer — written by our technicians.</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-tag">Maintenance</span>
+        <h3>5 signs your laptop needs a service</h3>
+        <p>Overheating, unusual noises, slow startup, frequent freezes, and battery draining fast are early warning signs — catching them early saves money.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-tag">Performance</span>
+        <h3>How to speed up an old laptop</h3>
+        <p>An SSD upgrade, extra RAM, removing startup bloatware, and a clean OS reinstall can make a 5+ year old laptop feel new again.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-tag">Security</span>
+        <h3>Why genuine antivirus matters</h3>
+        <p>Free or pirated antivirus tools often miss modern threats. A licensed antivirus with real-time protection is worth the small yearly cost.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -542,6 +684,16 @@
               <option>Other</option>
             </select>
           </div>
+          <div class="two-col">
+            <div class="field">
+              <label for="prefDate">Preferred Date</label>
+              <input type="date" id="prefDate">
+            </div>
+            <div class="field">
+              <label for="prefTime">Preferred Time</label>
+              <input type="time" id="prefTime">
+            </div>
+          </div>
           <div class="field">
             <label for="message">Describe the issue / request</label>
             <textarea id="message" placeholder="Tell us briefly what's going on..."></textarea>
@@ -564,9 +716,12 @@
       <div>
         <h4>Quick Links</h4>
         <a href="#services">Services</a>
-        <a href="#online-purchase">Online Purchase Setup</a>
+        <a href="#inventory">Laptops in Stock</a>
+        <a href="#pricing">Pricing</a>
         <a href="#about">About Us</a>
         <a href="#contact">Contact / Support</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
       </div>
       <div>
         <h4>Contact</h4>
@@ -601,6 +756,92 @@
       if(!wasOpen){ item.classList.add('open'); }
     });
   });
+
+  // ---- Inventory: fetched from a published Google Sheet CSV so the owner can update it without touching code ----
+  // Set this to your published Google Sheet CSV link (File > Share > Publish to web > CSV). See README for the exact steps
+  // and for a Google Form template that appends new rows automatically.
+  // Expected columns, in order: Model, Price, Specs, Image URL, In Stock (Yes/No)
+  const INVENTORY_CSV_URL = ""; // e.g. "https://docs.google.com/spreadsheets/d/e/XXXXX/pub?output=csv"
+
+  const SAMPLE_INVENTORY = [
+    { model: "Dell Inspiron 15 (i5, 8GB/512GB)", price: "₹42,999", specs: "15.6\" FHD · 8GB RAM · 512GB SSD", image: "", inStock: true },
+    { model: "HP Pavilion 14 (i3, 8GB/256GB)", price: "₹34,499", specs: "14\" FHD · 8GB RAM · 256GB SSD", image: "", inStock: true },
+    { model: "Lenovo ThinkPad E14 (Refurbished)", price: "₹27,999", specs: "14\" FHD · 8GB RAM · 256GB SSD", image: "", inStock: false }
+  ];
+
+  function parseCsv(text){
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for(let i = 0; i < text.length; i++){
+      const c = text[i];
+      if(inQuotes){
+        if(c === '"' && text[i+1] === '"'){ field += '"'; i++; }
+        else if(c === '"'){ inQuotes = false; }
+        else{ field += c; }
+      } else {
+        if(c === '"'){ inQuotes = true; }
+        else if(c === ','){ row.push(field); field = ''; }
+        else if(c === '\n' || c === '\r'){
+          if(field.length || row.length){ row.push(field); rows.push(row); row = []; field = ''; }
+        } else { field += c; }
+      }
+    }
+    if(field.length || row.length){ row.push(field); rows.push(row); }
+    return rows.filter(r => r.length > 1 || r[0] !== '');
+  }
+
+  function renderInventory(items, isSample){
+    const grid = document.getElementById('inventoryGrid');
+    const note = document.getElementById('inventoryNote');
+    if(!items.length){
+      grid.innerHTML = '<div class="inventory-empty">No laptops listed right now — check back soon or contact us directly.</div>';
+      return;
+    }
+    grid.innerHTML = items.map(function(item){
+      const media = item.image
+        ? '<img src="' + item.image + '" alt="' + item.model + '">'
+        : '💻';
+      const badge = item.inStock
+        ? '<span class="stock-badge in">In Stock</span>'
+        : '<span class="stock-badge out">Out of Stock</span>';
+      const waMsg = encodeURIComponent('Hi, I\'m interested in the ' + item.model + ' listed on your website.');
+      return '<div class="laptop-card">' +
+        '<div class="laptop-media">' + media + '</div>' +
+        '<div class="laptop-body">' +
+          '<h3>' + item.model + '</h3>' +
+          '<div class="specs">' + item.specs + '</div>' +
+          '<div class="laptop-foot"><span class="laptop-price">' + item.price + '</span>' + badge + '</div>' +
+          '<a class="enquire" href="https://wa.me/919845926131?text=' + waMsg + '" target="_blank" rel="noopener">Enquire on WhatsApp</a>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    if(isSample){
+      note.textContent = 'Sample listings shown below — connect your Google Sheet to make this update automatically (see README).';
+    } else {
+      note.textContent = 'Availability and prices can change — please confirm before visiting.';
+    }
+  }
+
+  if(INVENTORY_CSV_URL){
+    fetch(INVENTORY_CSV_URL)
+      .then(function(res){ return res.text(); })
+      .then(function(text){
+        const rows = parseCsv(text).slice(1); // skip header row
+        const items = rows.filter(r => r[0]).map(function(r){
+          return {
+            model: r[0] || '',
+            price: r[1] || '',
+            specs: r[2] || '',
+            image: r[3] || '',
+            inStock: (r[4] || '').trim().toLowerCase() !== 'no'
+          };
+        });
+        renderInventory(items, false);
+      })
+      .catch(function(){ renderInventory(SAMPLE_INVENTORY, true); });
+  } else {
+    renderInventory(SAMPLE_INVENTORY, true);
+  }
 </script>
 
 </body>
