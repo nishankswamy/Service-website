@@ -6,19 +6,20 @@ Single-page static website for a laptop sales & repair service provider: laptop 
 
 ## Push to GitHub
 
+The remote is already set to `https://github.com/nishankswamy/Service-website.git`. Create the empty repo on GitHub first (name: "Service website" — GitHub will turn the space into a hyphen, giving the URL above — don't add a README/license there), then from this folder run:
+
 ```bash
-git remote add origin https://github.com/<your-username>/<your-repo>.git
 git branch -M main
 git push -u origin main
 ```
 
-(Create the empty repo on GitHub first, without a README, then run the above from this folder.)
+You'll be prompted to sign in to GitHub (browser popup or a personal access token) the first time — that part has to happen on your machine.
 
 ## Deploy for free with GitHub Pages
 
 1. Push this repo to GitHub (see above).
 2. On GitHub: **Settings → Pages → Source** → select the `main` branch, `/ (root)` folder → **Save**.
-3. Your site will be live at `https://<your-username>.github.io/<your-repo>/` within a few minutes.
+3. Your site will be live at `https://nishankswamy.github.io/Service-website/` within a few minutes.
 4. To use a custom domain, add a `CNAME` file with your domain name, and point your domain's DNS to GitHub Pages per [GitHub's custom domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
 
 ## Before going live
