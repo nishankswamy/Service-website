@@ -273,19 +273,45 @@
   .faq-a p{color:var(--muted);font-size:15px;}
 
   /* Inventory */
+  .trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px;}
+  .trust-item{background:var(--alt-bg);border-radius:16px;padding:20px;text-align:center;}
+  .trust-item .trust-icon{width:34px;height:34px;margin:0 auto 10px;color:var(--navy);}
+  .trust-item .trust-icon svg{width:100%;height:100%;}
+  .trust-item h4{font-size:14px;color:var(--navy);font-weight:600;margin-bottom:4px;}
+  .trust-item p{font-size:12.5px;color:var(--muted);}
+
+  .filter-tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;}
+  .filter-tab{
+    padding:9px 20px;border-radius:980px;font-size:13.5px;font-weight:500;border:1px solid var(--border);
+    background:#fff;color:var(--navy);cursor:pointer;transition:background .15s,color .15s,border-color .15s;
+  }
+  .filter-tab:hover{border-color:var(--navy);}
+  .filter-tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
   .inventory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
   .laptop-card{background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform .2s;}
   .laptop-card:hover{transform:translateY(-3px);}
-  .laptop-media{height:150px;background:var(--alt-bg);display:flex;align-items:center;justify-content:center;font-size:52px;}
+  .laptop-media{height:150px;background:var(--alt-bg);display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;}
   .laptop-media img{width:100%;height:100%;object-fit:cover;}
+  .condition-badge{
+    position:absolute;top:10px;left:10px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:10px;
+    background:rgba(29,29,31,.85);color:#fff;letter-spacing:.01em;
+  }
+  .discount-badge{
+    position:absolute;top:10px;right:10px;font-size:11px;font-weight:700;padding:4px 9px;border-radius:10px;
+    background:#eafbef;color:#1c6b34;
+  }
   .laptop-body{padding:20px;}
   .laptop-body h3{font-size:16px;color:var(--navy);margin-bottom:6px;font-weight:600;}
   .laptop-body .specs{color:var(--muted);font-size:13px;margin-bottom:12px;min-height:34px;}
-  .laptop-foot{display:flex;align-items:center;justify-content:space-between;}
+  .laptop-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .price-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
   .laptop-price{font-weight:600;color:var(--navy);font-size:16px;}
+  .laptop-price-original{font-size:12.5px;color:var(--muted);text-decoration:line-through;}
   .stock-badge{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:12px;}
   .stock-badge.in{background:#eafbef;color:#1c6b34;}
   .stock-badge.out{background:#fdecec;color:#b3261e;}
+  .stock-urgency{font-size:11.5px;font-weight:600;color:#b3261e;margin-top:8px;}
   .laptop-body .enquire{display:block;margin-top:14px;text-align:center;background:var(--alt-bg);border-radius:980px;padding:9px;font-size:13.5px;font-weight:500;color:var(--navy);}
   .laptop-body .enquire:hover{background:#e8e8ed;}
   .inventory-note{text-align:center;color:var(--muted);font-size:13px;margin-top:24px;}
@@ -350,7 +376,7 @@
 
   @media (max-width:860px){
     .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
-    .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid{grid-template-columns:repeat(2,1fr);}
+    .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid, .trust-row{grid-template-columns:repeat(2,1fr);}
     .foot-grid{grid-template-columns:1fr;}
     nav.links{display:none;}
     .burger{display:block;}
@@ -359,7 +385,7 @@
     .banner{padding:36px 28px;}
   }
   @media (max-width:560px){
-    .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid{grid-template-columns:1fr;}
+    .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid, .trust-row{grid-template-columns:1fr;}
     .two-col{grid-template-columns:1fr;}
     .banner{flex-direction:column;align-items:flex-start;}
     .hero h1{font-size:32px;}
@@ -485,8 +511,37 @@
       <h2>Laptops available today</h2>
       <p>Updated directly by us — availability and prices can change, please confirm before visiting.</p>
     </div>
+    <div class="trust-row reveal-stagger">
+      <div class="trust-item reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <h4>Quality Checked</h4>
+        <p>Every laptop inspected before listing</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h4>Service Warranty</h4>
+        <p>Warranty included on sales &amp; repairs</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h4>Doorstep Delivery</h4>
+        <p>Pickup, drop &amp; setup on request</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <h4>Genuine Parts Only</h4>
+        <p>No pirated software or duplicate parts</p>
+      </div>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="All">All</button>
+      <button class="filter-tab" data-filter="New">New</button>
+      <button class="filter-tab" data-filter="Superb">Superb</button>
+      <button class="filter-tab" data-filter="Good">Good</button>
+      <button class="filter-tab" data-filter="Fair">Fair</button>
+    </div>
     <div id="inventoryGrid" class="inventory-grid"></div>
-    <p class="inventory-note" id="inventoryNote">Sample listings shown below — connect your Google Sheet to make this update automatically (see README).</p>
+    <p class="inventory-note" id="inventoryNote">Sample listings shown below — add real laptops from the admin dashboard.</p>
   </div>
 </section>
 
@@ -866,16 +921,37 @@
 
   // ---- Inventory: now fetched live from the TechFix backend API (managed via the admin dashboard at /admin) ----
   const SAMPLE_INVENTORY = [
-    { model: "Dell Inspiron 15 (i5, 8GB/512GB)", price: "₹42,999", specs: "15.6\" FHD · 8GB RAM · 512GB SSD", image: "", inStock: true },
-    { model: "HP Pavilion 14 (i3, 8GB/256GB)", price: "₹34,499", specs: "14\" FHD · 8GB RAM · 256GB SSD", image: "", inStock: true },
-    { model: "Lenovo ThinkPad E14 (Refurbished)", price: "₹27,999", specs: "14\" FHD · 8GB RAM · 256GB SSD", image: "", inStock: false }
+    { model: "Dell Inspiron 15 (i5, 8GB/512GB)", price: "₹42,999", originalPrice: "₹49,999", condition: "New", stockCount: null, specs: "15.6\" FHD · 8GB RAM · 512GB SSD", image: "", inStock: true },
+    { model: "HP Pavilion 14 (i3, 8GB/256GB)", price: "₹34,499", originalPrice: "", condition: "Superb", stockCount: 3, specs: "14\" FHD · 8GB RAM · 256GB SSD", image: "", inStock: true },
+    { model: "Lenovo ThinkPad E14 (Refurbished)", price: "₹27,999", originalPrice: "₹36,999", condition: "Good", stockCount: 1, specs: "14\" FHD · 8GB RAM · 256GB SSD", image: "", inStock: false }
   ];
 
+  let CURRENT_INVENTORY = [];
+  let CURRENT_FILTER = 'All';
+
+  function priceToNumber(str){
+    return parseInt(String(str || '').replace(/[^0-9]/g, ''), 10) || 0;
+  }
+
   function renderInventory(items, isSample){
-    const grid = document.getElementById('inventoryGrid');
+    CURRENT_INVENTORY = items;
     const note = document.getElementById('inventoryNote');
+    if(isSample){
+      note.textContent = 'Sample listings shown below — add real laptops from the admin dashboard.';
+    } else {
+      note.textContent = 'Availability and prices can change — please confirm before visiting.';
+    }
+    renderFilteredInventory();
+  }
+
+  function renderFilteredInventory(){
+    const grid = document.getElementById('inventoryGrid');
+    const items = CURRENT_FILTER === 'All'
+      ? CURRENT_INVENTORY
+      : CURRENT_INVENTORY.filter(function(item){ return (item.condition || 'New') === CURRENT_FILTER; });
+
     if(!items.length){
-      grid.innerHTML = '<div class="inventory-empty">No laptops listed right now — check back soon or contact us directly.</div>';
+      grid.innerHTML = '<div class="inventory-empty">No laptops match this filter right now — check back soon or contact us directly.</div>';
       return;
     }
     const laptopIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:44px;height:44px;color:#8aa9d6;"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9"/><path d="M2 16h20l1.3 2.6a1 1 0 0 1-.9 1.4H1.6a1 1 0 0 1-.9-1.4L2 16Z"/></svg>';
@@ -884,27 +960,51 @@
       const media = item.image
         ? '<img src="' + item.image + '" alt="' + item.model + '">'
         : laptopIcon;
+      const condition = item.condition || 'New';
+      const conditionBadge = '<span class="condition-badge">' + condition + '</span>';
+      let discountBadge = '';
+      let originalPriceHtml = '';
+      if(item.originalPrice){
+        const orig = priceToNumber(item.originalPrice);
+        const now = priceToNumber(item.price);
+        if(orig > now && orig > 0){
+          const pct = Math.round(((orig - now) / orig) * 100);
+          discountBadge = '<span class="discount-badge">' + pct + '% OFF</span>';
+        }
+        originalPriceHtml = '<span class="laptop-price-original">' + item.originalPrice + '</span>';
+      }
       const badge = item.inStock
         ? '<span class="stock-badge in">In Stock</span>'
         : '<span class="stock-badge out">Out of Stock</span>';
+      const urgency = (item.inStock && item.stockCount != null && item.stockCount <= 3)
+        ? '<div class="stock-urgency">Only ' + item.stockCount + ' left</div>'
+        : '';
       const waMsg = encodeURIComponent('Hi, I\'m interested in the ' + item.model + ' listed on your website.');
       return '<div class="laptop-card reveal">' +
-        '<div class="laptop-media">' + media + '</div>' +
+        '<div class="laptop-media">' + media + conditionBadge + discountBadge + '</div>' +
         '<div class="laptop-body">' +
           '<h3>' + item.model + '</h3>' +
           '<div class="specs">' + item.specs + '</div>' +
-          '<div class="laptop-foot"><span class="laptop-price">' + item.price + '</span>' + badge + '</div>' +
+          '<div class="laptop-foot">' +
+            '<div class="price-row"><span class="laptop-price">' + item.price + '</span>' + originalPriceHtml + '</div>' +
+            badge +
+          '</div>' +
+          urgency +
           '<a class="enquire" href="https://wa.me/919845926131?text=' + waMsg + '" target="_blank" rel="noopener">' + waIcon + ' Enquire on WhatsApp</a>' +
         '</div>' +
       '</div>';
     }).join('');
-    if(isSample){
-      note.textContent = 'Sample listings shown below — connect your Google Sheet to make this update automatically (see README).';
-    } else {
-      note.textContent = 'Availability and prices can change — please confirm before visiting.';
-    }
     observeReveals(grid);
   }
+
+  document.querySelectorAll('.filter-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-tab').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      CURRENT_FILTER = btn.dataset.filter;
+      renderFilteredInventory();
+    });
+  });
 
   fetch(BACKEND_URL + '/api/inventory')
     .then(function(res){ if(!res.ok) throw new Error('Request failed'); return res.json(); })
@@ -913,6 +1013,9 @@
         return {
           model: item.model || '',
           price: item.price || '',
+          originalPrice: item.originalPrice || '',
+          condition: item.condition || 'New',
+          stockCount: item.stockCount != null ? item.stockCount : null,
           specs: item.specs || '',
           image: item.imageUrl || '',
           inStock: !!item.inStock
