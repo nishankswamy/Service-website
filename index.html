@@ -1026,5 +1026,65 @@
     .catch(function(){ renderInventory(SAMPLE_INVENTORY, true); });
 </script>
 
+<!--
+  Motion (motion.dev — the vanilla-JS sibling of Framer Motion; same team, no React/build step required).
+  Loaded as an ES module straight from a CDN. This is purely additive: it only adds a hero entrance
+  animation and button hover/press micro-interactions. If the CDN is ever blocked, this script simply
+  fails to run and the page falls back to its normal, fully-visible, non-animated state — the scroll
+  reveal system above (plain JS, no dependency) keeps working either way.
+-->
+<script type="module">
+  import { animate, stagger } from "https://cdn.jsdelivr.net/npm/motion@11/+esm";
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    const easeOutExpo = [0.22, 1, 0.36, 1];
+
+    // Hero entrance: headline column staggers in, hero card slides in from the right.
+    const heroItems = document.querySelectorAll('.hero-grid > div:first-child > *');
+    if (heroItems.length) {
+      animate(
+        heroItems,
+        { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0px)'] },
+        { duration: 0.7, delay: stagger(0.09), easing: easeOutExpo }
+      );
+    }
+    const heroCard = document.querySelector('.hero-card');
+    if (heroCard) {
+      animate(
+        heroCard,
+        { opacity: [0, 1], transform: ['translateX(24px)', 'translateX(0px)'] },
+        { duration: 0.7, delay: 0.15, easing: easeOutExpo }
+      );
+    }
+
+    // WhatsApp floating button pops in with a little overshoot.
+    const fab = document.querySelector('.whatsapp-fab');
+    if (fab) {
+      animate(
+        fab,
+        { opacity: [0, 1], transform: ['scale(0.6)', 'scale(1)'] },
+        { duration: 0.5, delay: 0.6, easing: [0.34, 1.56, 0.64, 1] }
+      );
+    }
+
+    // Button micro-interactions: subtle scale on hover/press for a tactile, Apple-like feel.
+    document.querySelectorAll('.btn, .filter-tab, .nav-cta').forEach(function (btn) {
+      btn.addEventListener('pointerenter', function () {
+        animate(btn, { transform: ['scale(1)', 'scale(1.035)'] }, { duration: 0.25, easing: 'ease-out' });
+      });
+      btn.addEventListener('pointerleave', function () {
+        animate(btn, { transform: ['scale(1.035)', 'scale(1)'] }, { duration: 0.25, easing: 'ease-out' });
+      });
+      btn.addEventListener('pointerdown', function () {
+        animate(btn, { transform: ['scale(1.035)', 'scale(0.96)'] }, { duration: 0.12, easing: 'ease-out' });
+      });
+      btn.addEventListener('pointerup', function () {
+        animate(btn, { transform: ['scale(0.96)', 'scale(1.035)'] }, { duration: 0.18, easing: 'ease-out' });
+      });
+    });
+  }
+</script>
+
 </body>
 </html>
