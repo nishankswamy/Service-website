@@ -129,33 +129,11 @@
   .mobile-menu a:last-child{border-bottom:none;}
   nav.links a.active{opacity:1;color:var(--blue);}
 
-  /* Hero */
-  .hero{
-    background:var(--bg);
-    padding:88px 0 72px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::before{
-    content:"";position:absolute;top:-140px;right:-110px;width:440px;height:440px;
-    background:radial-gradient(circle at center, rgba(0,113,227,.16), rgba(0,113,227,0) 70%);
-    pointer-events:none;z-index:0;
-  }
-  .hero::after{
-    content:"";position:absolute;bottom:-180px;left:-130px;width:400px;height:400px;
-    background:radial-gradient(circle at center, rgba(29,29,31,.07), rgba(29,29,31,0) 70%);
-    pointer-events:none;z-index:0;
-  }
-  .hero > .wrap{position:relative;z-index:1;}
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;text-align:left;}
+  /* Shared buttons/eyebrow (used across hero + other sections) */
   .eyebrow{
     display:inline-block;color:var(--blue);font-weight:600;font-size:14px;
     margin-bottom:10px;letter-spacing:-.01em;
   }
-  .hero h1{font-size:56px;line-height:1.07;color:var(--navy);font-weight:600;letter-spacing:-.02em;margin-bottom:18px;}
-  .hero h1 span{color:var(--blue);}
-  .hero p{font-size:19px;color:var(--muted);max-width:520px;margin-bottom:32px;font-weight:400;}
   .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
   .btn{
     padding:12px 24px;border-radius:980px;font-weight:400;font-size:16px;display:inline-flex;align-items:center;gap:8px;
@@ -165,14 +143,78 @@
   .btn-primary:hover{background:var(--blue-dark);}
   .btn-outline{background:transparent;color:var(--blue);border:1px solid var(--border);}
   .btn-outline:hover{opacity:.7;}
-  .hero-card{
-    background:var(--card);border-radius:20px;padding:28px;
+
+  /* Cinematic hero: scroll-scrubbed video background, glass UI, dark theme (scoped to .hero only) */
+  .hero{
+    position:relative;
+    height:200vh; /* extra height gives scroll room to scrub the video */
+    padding:0; /* override the generic section{padding:88px 0} rule below — hero is full-bleed */
+    background:#0a0a0a;
   }
-  .hero-card h3{color:var(--navy);font-size:15px;font-weight:600;margin-bottom:14px;}
-  .stat-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);}
+  .hero-sticky{
+    position:sticky;top:0;height:100vh;overflow:hidden;
+  }
+  @supports (height: 100svh){
+    .hero-sticky{height:100svh;}
+  }
+  .hero-bg{position:absolute;inset:0;z-index:0;background:#0a0a0a;overflow:hidden;}
+  .hero-video, .hero-canvas{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0;transition:opacity .5s ease;
+  }
+  .hero-video.visible, .hero-canvas.visible{opacity:1;}
+  .hero-scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.5) 55%, rgba(0,0,0,.75) 100%);
+  }
+  .hero-content{
+    position:relative;z-index:1;height:100%;box-sizing:border-box;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:110px 24px 56px;color:#fff;
+  }
+  .hero-top-row{display:flex;flex-direction:column;gap:20px;}
+  .hero-mono-label{
+    display:block;font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    color:rgba(255,255,255,.9);text-shadow:0 1px 6px rgba(0,0,0,.45);margin-bottom:8px;
+  }
+  .hero-intro{max-width:340px;font-size:17px;line-height:1.55;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45);}
+  .hero-bottom-row{display:flex;flex-direction:column;gap:28px;}
+  .hero-badge{
+    display:inline-block;border-left:2px solid #fff;background:rgba(255,255,255,.15);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    padding:6px 14px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px;
+  }
+  .hero-headline{
+    font-size:38px;line-height:1.08;font-weight:600;letter-spacing:-.02em;color:#fff;
+    text-shadow:0 2px 20px rgba(0,0,0,.55);margin-bottom:26px;
+  }
+  .hero .btn-primary{background:#fff;color:#000;}
+  .hero .btn-primary:hover{background:rgba(255,255,255,.85);}
+  .hero .btn-outline{
+    background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  }
+  .hero .btn-outline:hover{background:rgba(255,255,255,.2);}
+  .hero-card{
+    background:rgba(255,255,255,.15);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:26px;max-width:340px;
+  }
+  .hero-card h3{color:#fff;font-size:14px;font-weight:600;margin-bottom:14px;}
+  .stat-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.18);}
   .stat-row:last-child{border-bottom:none;}
-  .stat-row .num{font-weight:600;color:var(--navy);font-size:19px;}
-  .stat-row .label{color:var(--muted);font-size:13px;}
+  .stat-row .num{font-weight:600;color:#fff;font-size:19px;}
+  .stat-row .label{color:rgba(255,255,255,.7);font-size:13px;}
+  @media (min-width:640px){
+    .hero-top-row{flex-direction:row;justify-content:space-between;align-items:flex-start;}
+    .hero-intro{text-align:right;}
+    .hero-headline{font-size:56px;}
+  }
+  @media (min-width:860px){
+    .hero-bottom-row{flex-direction:row;align-items:flex-end;justify-content:space-between;}
+  }
+  @media (min-width:1024px){
+    .hero-headline{font-size:68px;}
+  }
 
   section{padding:88px 0;}
   .section-head{max-width:640px;margin:0 auto 48px;text-align:center;}
@@ -406,12 +448,11 @@
   }
 
   @media (max-width:860px){
-    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .about-grid, .contact-grid{grid-template-columns:1fr;}
     .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid, .trust-row{grid-template-columns:repeat(2,1fr);}
     .foot-grid{grid-template-columns:1fr;}
     nav.links{display:none;}
     .burger{display:block;}
-    .hero h1{font-size:38px;}
     .section-head h2{font-size:30px;}
     .banner{padding:36px 28px;}
   }
@@ -419,7 +460,6 @@
     .service-grid, .steps, .testi-grid, .inventory-grid, .pricing-grid, .tips-grid, .trust-row{grid-template-columns:1fr;}
     .two-col{grid-template-columns:1fr;}
     .banner{flex-direction:column;align-items:flex-start;}
-    .hero h1{font-size:32px;}
   }
 </style>
 </head>
@@ -455,23 +495,39 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Laptop Sales &amp; Repair Specialists</span>
-      <h1>Laptops, repairs &amp; software — <span>sorted, fast.</span></h1>
-      <p>New &amp; used laptop sales, software upgrades, electronic repairs, antivirus setup, and free initial installation for anything you bought online. One call, all sorted.</p>
-      <div class="btn-row">
-        <a href="#contact" class="btn btn-primary">Book a Service</a>
-        <a href="#services" class="btn btn-outline">View Services</a>
-      </div>
+<section class="hero" id="cineHero">
+  <div class="hero-sticky">
+    <div class="hero-bg" aria-hidden="true">
+      <video id="heroVideo" class="hero-video" muted playsinline preload="auto"></video>
+      <canvas id="heroCanvas" class="hero-canvas"></canvas>
+      <div class="hero-scrim"></div>
     </div>
-    <div class="hero-card">
-      <h3>Why customers choose us</h3>
-      <div class="stat-row"><span class="label">Years of hands-on service</span><span class="num" data-count="10" data-suffix="+">10+</span></div>
-      <div class="stat-row"><span class="label">Devices serviced</span><span class="num" data-count="5000" data-suffix="+">5,000+</span></div>
-      <div class="stat-row"><span class="label">Same-day diagnostics</span><span class="num">Yes</span></div>
-      <div class="stat-row"><span class="label">Genuine antivirus licenses</span><span class="num">✔</span></div>
+    <div class="wrap hero-content">
+      <div class="hero-top-row">
+        <div>
+          <span class="hero-mono-label">/ LAPTOP SALES</span>
+          <span class="hero-mono-label">/ REPAIRS &amp; UPGRADES</span>
+          <span class="hero-mono-label">/ ONLINE SETUP SERVICE</span>
+        </div>
+        <p class="hero-intro">New &amp; used laptop sales, software upgrades, electronic repairs, antivirus setup, and free initial installation for anything you bought online. One call, all sorted.</p>
+      </div>
+      <div class="hero-bottom-row">
+        <div>
+          <span class="hero-badge">Trusted for 10+ Years in Bangalore</span>
+          <h1 class="hero-headline">Laptops, repairs &amp; software —<br>sorted, fast.</h1>
+          <div class="btn-row">
+            <a href="#contact" class="btn btn-primary">Book a Service</a>
+            <a href="#services" class="btn btn-outline">View Services</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Why customers choose us</h3>
+          <div class="stat-row"><span class="label">Years of hands-on service</span><span class="num" data-count="10" data-suffix="+">10+</span></div>
+          <div class="stat-row"><span class="label">Devices serviced</span><span class="num" data-count="5000" data-suffix="+">5,000+</span></div>
+          <div class="stat-row"><span class="label">Same-day diagnostics</span><span class="num">Yes</span></div>
+          <div class="stat-row"><span class="label">Genuine antivirus licenses</span><span class="num">✔</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -998,6 +1054,136 @@
     });
   })();
 
+  // ---- Cinematic hero: scroll-scrubbed video background ----
+  // Scoped entirely to #cineHero (a 200vh sticky container) so only the hero scrubs;
+  // the rest of the page scrolls normally underneath. If the video fails to load or
+  // the browser can't build a frame cache (e.g. CORS blocks canvas reads), this quietly
+  // falls back to seeking the real <video> element directly — still works, just a touch
+  // less smooth. If #cineHero isn't on the page at all, this whole block no-ops.
+  (function(){
+    var heroEl = document.getElementById('cineHero');
+    var video = document.getElementById('heroVideo');
+    var canvas = document.getElementById('heroCanvas');
+    if(!heroEl || !video || !canvas) return;
+
+    var VIDEO_SRC = 'https://assets.mixkit.co/videos/18140/18140-360.mp4';
+    video.src = VIDEO_SRC;
+
+    var progress = 0;
+    var smoothed = 0;
+    var frames = [];
+    var framesReady = false;
+    var videoReady = false;
+
+    function clamp(v, min, max){ return Math.min(max, Math.max(min, v)); }
+
+    function updateProgress(){
+      var rect = heroEl.getBoundingClientRect();
+      var scrollable = heroEl.offsetHeight - window.innerHeight;
+      var raw = scrollable > 0 ? (-rect.top) / scrollable : 0;
+      progress = clamp(raw, 0, 1);
+    }
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+
+    video.addEventListener('loadeddata', function(){ videoReady = true; });
+
+    function drawCover(source, sw, sh){
+      var ctx = canvas.getContext('2d');
+      if(!ctx || !sw || !sh) return;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var cssW = canvas.clientWidth;
+      var cssH = canvas.clientHeight;
+      var targetW = Math.round(cssW * dpr);
+      var targetH = Math.round(cssH * dpr);
+      if(canvas.width !== targetW || canvas.height !== targetH){
+        canvas.width = targetW;
+        canvas.height = targetH;
+      }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var scale = Math.max(cssW / sw, cssH / sh);
+      var dw = sw * scale, dh = sh * scale;
+      var dx = (cssW - dw) / 2, dy = (cssH - dh) / 2;
+      ctx.clearRect(0, 0, cssW, cssH);
+      ctx.drawImage(source, dx, dy, dw, dh);
+    }
+
+    function loop(){
+      smoothed += (progress - smoothed) * 0.12;
+      if(frames.length){
+        var idx = clamp(Math.round(smoothed * (frames.length - 1)), 0, frames.length - 1);
+        var frame = frames[idx];
+        drawCover(frame, frame.width, frame.height);
+      } else if(video.duration && !isNaN(video.duration)){
+        var target = smoothed * Math.max(video.duration - 0.05, 0);
+        if(Math.abs(video.currentTime - target) > 0.04){
+          video.currentTime = target;
+        }
+      }
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    function updateLayerVisibility(){
+      video.classList.toggle('visible', videoReady && !framesReady);
+      canvas.classList.toggle('visible', framesReady);
+    }
+    var visibilityTimer = setInterval(updateLayerVisibility, 200);
+
+    // Build an offscreen frame cache for smooth scrubbing (best-effort; falls back silently).
+    (async function extractFrames(){
+      await new Promise(function(resolve){
+        if(video.readyState >= 2) return resolve();
+        video.addEventListener('loadeddata', function once(){ video.removeEventListener('loadeddata', once); resolve(); });
+      });
+      await new Promise(function(r){ setTimeout(r, 300); });
+
+      var offscreen = document.createElement('video');
+      offscreen.src = VIDEO_SRC;
+      offscreen.muted = true;
+      offscreen.playsInline = true;
+      offscreen.crossOrigin = 'anonymous';
+      offscreen.preload = 'auto';
+
+      var loaded = await new Promise(function(resolve){
+        offscreen.addEventListener('loadedmetadata', function(){ resolve(true); }, { once: true });
+        offscreen.addEventListener('error', function(){ resolve(false); }, { once: true });
+      });
+      if(!loaded || !offscreen.duration || isNaN(offscreen.duration)) return;
+
+      var duration = offscreen.duration;
+      var frameCount = clamp(Math.round(duration * 12), 24, 90);
+      var maxWidth = 960;
+      var sw = offscreen.videoWidth || maxWidth;
+      var sh = offscreen.videoHeight || Math.round(maxWidth * 0.5625);
+      var scale = Math.min(1, maxWidth / sw);
+      var w = Math.round(sw * scale), h = Math.round(sh * scale);
+
+      var capture = document.createElement('canvas');
+      capture.width = w; capture.height = h;
+      var ctx = capture.getContext('2d');
+      if(!ctx) return;
+
+      for(var i = 0; i < frameCount; i++){
+        var t = (i / Math.max(frameCount - 1, 1)) * Math.max(duration - 0.05, 0);
+        var seeked = await new Promise(function(resolve){
+          offscreen.addEventListener('seeked', function once(){ offscreen.removeEventListener('seeked', once); resolve(true); });
+          offscreen.currentTime = t;
+        });
+        if(!seeked) return;
+        ctx.drawImage(offscreen, 0, 0, w, h);
+        try {
+          var bitmap = await createImageBitmap(capture);
+          frames.push(bitmap);
+        } catch(e){
+          return; // tainted canvas / unsupported — keep using the direct-seek fallback
+        }
+      }
+      if(frames.length){ framesReady = true; }
+    })();
+  })();
+
   // ---- Animated stat counters (hero card) ----
   (function(){
     var countEls = document.querySelectorAll('.num[data-count]');
@@ -1216,7 +1402,7 @@
     const easeOutExpo = [0.22, 1, 0.36, 1];
 
     // Hero entrance: headline column staggers in, hero card slides in from the right.
-    const heroItems = document.querySelectorAll('.hero-grid > div:first-child > *');
+    const heroItems = document.querySelectorAll('.hero-bottom-row > div:first-child > *');
     if (heroItems.length) {
       animate(
         heroItems,
