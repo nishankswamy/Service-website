@@ -751,8 +751,8 @@
             <label for="message">Describe the issue / request</label>
             <textarea id="message" placeholder="Tell us briefly what's going on..."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary submit-btn">Submit Request</button>
-          <p class="form-note">This form doesn't send automatically yet — connect it to email/WhatsApp before going live. Meanwhile, call or email us directly above.</p>
+          <button type="submit" class="btn btn-primary submit-btn" id="submitBtn">Submit Request</button>
+          <p class="form-note" id="formNote">We'll get back to you shortly. You can also call or email us directly above.</p>
         </form>
       </div>
     </div>
@@ -795,10 +795,42 @@
 <a href="https://wa.me/919845926131?text=Hi%2C%20I%27d%20like%20help%20with%20my%20laptop" class="whatsapp-fab" title="Chat on WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
 
 <script>
+  // Live backend API (Render). Health check: BACKEND_URL + "/api/health"
+  const BACKEND_URL = "https://techfix-backend-p1uv.onrender.com";
+
   document.getElementById('supportForm').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('successMsg').style.display = 'block';
-    this.reset();
+    const form = this;
+    const btn = document.getElementById('submitBtn');
+    const note = document.getElementById('formNote');
+    const payload = {
+      name: document.getElementById('name').value,
+      phone: document.getElementById('phone').value,
+      email: document.getElementById('email').value,
+      service: document.getElementById('service').value,
+      preferredDate: document.getElementById('prefDate').value,
+      preferredTime: document.getElementById('prefTime').value,
+      message: document.getElementById('message').value
+    };
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    fetch(BACKEND_URL + '/api/tickets', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function(res){ if(!res.ok) throw new Error('Request failed'); return res.json(); })
+      .then(function(){
+        document.getElementById('successMsg').style.display = 'block';
+        form.reset();
+      })
+      .catch(function(){
+        note.textContent = 'Something went wrong sending your request — please call or WhatsApp us directly above.';
+      })
+      .finally(function(){
+        btn.disabled = false;
+        btn.textContent = 'Submit Request';
+      });
   });
 
   // ---- Scroll reveal animations (no external library) ----
@@ -832,38 +864,12 @@
     });
   });
 
-  // ---- Inventory: fetched from a published Google Sheet CSV so the owner can update it without touching code ----
-  // Set this to your published Google Sheet CSV link (File > Share > Publish to web > CSV). See README for the exact steps
-  // and for a Google Form template that appends new rows automatically.
-  // Expected columns, in order: Model, Price, Specs, Image URL, In Stock (Yes/No)
-  const INVENTORY_CSV_URL = ""; // e.g. "https://docs.google.com/spreadsheets/d/e/XXXXX/pub?output=csv"
-
+  // ---- Inventory: now fetched live from the TechFix backend API (managed via the admin dashboard at /admin) ----
   const SAMPLE_INVENTORY = [
     { model: "Dell Inspiron 15 (i5, 8GB/512GB)", price: "₹42,999", specs: "15.6\" FHD · 8GB RAM · 512GB SSD", image: "", inStock: true },
     { model: "HP Pavilion 14 (i3, 8GB/256GB)", price: "₹34,499", specs: "14\" FHD · 8GB RAM · 256GB SSD", image: "", inStock: true },
     { model: "Lenovo ThinkPad E14 (Refurbished)", price: "₹27,999", specs: "14\" FHD · 8GB RAM · 256GB SSD", image: "", inStock: false }
   ];
-
-  function parseCsv(text){
-    const rows = [];
-    let row = [], field = '', inQuotes = false;
-    for(let i = 0; i < text.length; i++){
-      const c = text[i];
-      if(inQuotes){
-        if(c === '"' && text[i+1] === '"'){ field += '"'; i++; }
-        else if(c === '"'){ inQuotes = false; }
-        else{ field += c; }
-      } else {
-        if(c === '"'){ inQuotes = true; }
-        else if(c === ','){ row.push(field); field = ''; }
-        else if(c === '\n' || c === '\r'){
-          if(field.length || row.length){ row.push(field); rows.push(row); row = []; field = ''; }
-        } else { field += c; }
-      }
-    }
-    if(field.length || row.length){ row.push(field); rows.push(row); }
-    return rows.filter(r => r.length > 1 || r[0] !== '');
-  }
 
   function renderInventory(items, isSample){
     const grid = document.getElementById('inventoryGrid');
@@ -900,26 +906,21 @@
     observeReveals(grid);
   }
 
-  if(INVENTORY_CSV_URL){
-    fetch(INVENTORY_CSV_URL)
-      .then(function(res){ return res.text(); })
-      .then(function(text){
-        const rows = parseCsv(text).slice(1); // skip header row
-        const items = rows.filter(r => r[0]).map(function(r){
-          return {
-            model: r[0] || '',
-            price: r[1] || '',
-            specs: r[2] || '',
-            image: r[3] || '',
-            inStock: (r[4] || '').trim().toLowerCase() !== 'no'
-          };
-        });
-        renderInventory(items, false);
-      })
-      .catch(function(){ renderInventory(SAMPLE_INVENTORY, true); });
-  } else {
-    renderInventory(SAMPLE_INVENTORY, true);
-  }
+  fetch(BACKEND_URL + '/api/inventory')
+    .then(function(res){ if(!res.ok) throw new Error('Request failed'); return res.json(); })
+    .then(function(data){
+      const items = data.map(function(item){
+        return {
+          model: item.model || '',
+          price: item.price || '',
+          specs: item.specs || '',
+          image: item.imageUrl || '',
+          inStock: !!item.inStock
+        };
+      });
+      renderInventory(items.length ? items : SAMPLE_INVENTORY, items.length === 0);
+    })
+    .catch(function(){ renderInventory(SAMPLE_INVENTORY, true); });
 </script>
 
 </body>
